@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora Inconnect</title>
+    <link rel="stylesheet" href="CSS/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <section class="hero">
+        <div class="hero-card">
+          <div>
+            <span class="eyebrow">Calculadora Inconnect</span>
+            <h1>
+              Calcula comisiones, compara ahorro y revisa MSI en una sola
+              pantalla.
+            </h1>
+            <p>Calculadora de Inconnect.</p>
+
+            <div class="hero-bullets">
+              <div class="hero-bullet">
+                <span>✓</span>
+                <div>Selecciona giro, tipo de tarjeta y monto de venta.</div>
+              </div>
+              <div class="hero-bullet">
+                <span>✓</span>
+                <div>
+                  Calcula comisión, IVA, tasa total y monto neto a depositar.
+                </div>
+              </div>
+              <div class="hero-bullet">
+                <span>✓</span>
+                <div>
+                  Compara contra una tasa agregadora promedio de 3.60% + IVA.
+                </div>
+              </div>
+              <div class="hero-bullet">
+                <span>✓</span>
+                <div>
+                  Consulta escenarios de meses sin intereses para Otros Bancos,
+                  PROSA y AMEX.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-side">
+            <div class="info-card">
+              <strong>Tasa comparativa usada</strong>
+              <b>3.60% + IVA</b>
+            </div>
+            <div class="info-card">
+              <strong>IVA aplicado a comisión</strong>
+              <b>16%</b>
+            </div>
+            <div class="info-card">
+              <strong>Tipos de tarjeta</strong>
+              <b>Crédito, Débito, Internacional, AMEX y Discover</b>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <aside class="panel">
+          <div class="section-title">
+            <div>
+              <h2>Configura tu cálculo</h2>
+              <p>
+                Modifica los campos y la calculadora se actualiza al instante.
+              </p>
+            </div>
+          </div>
+
+          <div class="controls">
+            <div class="field">
+              <label for="amount">Monto de venta</label>
+              <input
+                id="amount"
+                type="number"
+                min="1"
+                step="0.01"
+                value="5000"
+              />
+            </div>
+
+            <div class="field">
+              <label for="businessType">Giro comercial</label>
+              <select id="businessType"></select>
+            </div>
+
+            <div class="field">
+              <label>Tipo de tarjeta</label>
+              <div class="segmented" id="cardTypeButtons">
+                <button type="button" class="active" data-card="credito">
+                  Crédito
+                </button>
+                <button type="button" data-card="debito">Débito</button>
+                <button type="button" data-card="intl">Internacional</button>
+                <button type="button" data-card="amex">AMEX</button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="cardTypeAlt">Otras opciones</label>
+              <select id="cardTypeAlt">
+                <option value="credito">Crédito</option>
+                <option value="debito">Débito</option>
+                <option value="intl">Internacional</option>
+                <option value="amex">AMEX</option>
+                <option value="discover">Discover</option>
+              </select>
+            </div>
+
+            <div class="helper">
+              La selección del bloque rápido y la del selector quedan
+              sincronizadas. En el cálculo se usa la opción activa.
+            </div>
+          </div>
+        </aside>
+
+        <main class="panel">
+          <div class="section-title">
+            <div>
+              <h2>Resumen principal</h2>
+              <p>
+                Observa y compara.
+              </p>
+            </div>
+            <span class="pill" id="selectedRateLabel">Tasa: 0.70%</span>
+          </div>
+
+          <div class="results-top">
+            <div class="kpi accent">
+              <small>Tasa base</small>
+              <strong id="kpiRate">0.70%</strong>
+            </div>
+            <div class="kpi primary">
+              <small>IVA sobre comisión</small>
+              <strong id="kpiVatRate">0.11%</strong>
+            </div>
+            <div class="kpi">
+              <small>Tasa total con IVA</small>
+              <strong id="kpiTotalRate">0.81%</strong>
+            </div>
+            <div class="kpi success">
+              <small>Depósito neto</small>
+              <strong id="kpiNet">$0.00</strong>
+            </div>
+          </div>
+
+          <div class="results-grid">
+            <div class="card">
+              <h3>Detalle de la operación</h3>
+              <div class="summary-list">
+                <div class="summary-row">
+                  <span>Monto de venta</span><b id="summaryAmount">$0.00</b>
+                </div>
+                <div class="summary-row">
+                  <span>Comisión base</span><b id="summaryCommission">$0.00</b>
+                </div>
+                <div class="summary-row">
+                  <span>IVA sobre comisión</span><b id="summaryVat">$0.00</b>
+                </div>
+                <div class="summary-row">
+                  <span>Comisión total aplicada</span
+                  ><b id="summaryTotal">$0.00</b>
+                </div>
+                <div class="summary-row">
+                  <span>Monto neto a depositar</span
+                  ><b id="summaryNet">$0.00</b>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Comparativo vs agregador</h3>
+              <div class="bar-wrap">
+                <div class="bar-line">
+                  <div class="bar-head">
+                    <span>Inconnect</span
+                    ><strong id="barLabelInconnect">0.81%</strong>
+                  </div>
+                  <div class="bar inconnect">
+                    <div id="barInconnect" style="width: 10%"></div>
+                  </div>
+                </div>
+                <div class="bar-line">
+                  <div class="bar-head">
+                    <span>Agregador promedio</span><strong>4.18%</strong>
+                  </div>
+                  <div class="bar agregador">
+                    <div style="width: 100%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="save-box">
+                Estimación de ahorro en esta venta:
+                <strong id="savePerSale">$0.00</strong>
+                <div class="muted" style="margin-top: 8px">
+                  Ahorro anual estimado si repites esta operación 365 veces:
+                </div>
+                <strong id="saveAnnual">$0.00</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="otros">
+              MSI Otros Bancos
+            </button>
+            <button class="tab-btn" data-tab="prosa">MSI PROSA</button>
+            <button class="tab-btn" data-tab="amex">MSI AMEX</button>
+          </div>
+
+          <div class="tab-panel active" id="panel-otros">
+            <div class="card">
+              <div class="section-title">
+                <div>
+                  <h3>Meses sin intereses – Otros Bancos</h3>
+                  <p>
+                    Usa tasa crédito base de 0.70% y agrega la sobretasa
+                    correspondiente.
+                  </p>
+                </div>
+              </div>
+              <div class="table-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Plazo</th>
+                      <th>Sobretasa</th>
+                      <th>Sobretasa + IVA</th>
+                      <th>Tasa total</th>
+                      <th>Comisión</th>
+                      <th>Monto a depositar</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody-otros"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="panel-prosa">
+            <div class="card">
+              <div class="section-title">
+                <div>
+                  <h3>Meses sin intereses – PROSA</h3>
+                  <p>
+                    Usa tasa crédito base de 2.27% y agrega la sobretasa
+                    correspondiente.
+                  </p>
+                </div>
+              </div>
+              <div class="table-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Plazo</th>
+                      <th>Sobretasa</th>
+                      <th>Sobretasa + IVA</th>
+                      <th>Tasa total</th>
+                      <th>Comisión</th>
+                      <th>Monto a depositar</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody-prosa"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="panel-amex">
+            <div class="card">
+              <div class="section-title">
+                <div>
+                  <h3>Meses sin intereses – AMEX</h3>
+                  <p>
+                    Usa tasa AMEX base de 2.90% y agrega la sobretasa
+                    correspondiente.
+                  </p>
+                </div>
+              </div>
+              <div class="table-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Plazo</th>
+                      <th>Sobretasa</th>
+                      <th>Sobretasa + IVA</th>
+                      <th>Tasa total</th>
+                      <th>Comisión</th>
+                      <th>Monto a depositar</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody-amex"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </main>
+      </section>
+
+      <div class="footer-note">
+        Tasas y tablas cargadas a partir de la información entregada para esta
+        versión. La interfaz usa una paleta inspirada en el estilo visible de
+        Inconnect, con naranja dominante y contraste azul oscuro.
+      </div>
+    </div>
+
+    <script src="JS/script.js"></script>
+  </body>
+</html>
